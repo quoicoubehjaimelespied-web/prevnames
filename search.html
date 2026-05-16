@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="search.css">
 </head>
 <body>
-    <div class="search-page">
-        <nav class="dash-nav">
-            <div class="dash-nav-left">
-                <a href="/dashboard.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+    <div id="search-canvas"></div>
+
+    <nav>
+        <div class="nav-inner">
+            <div class="nav-left">
+                <div class="logo">
                     <div class="logo-icon">
-                        <svg viewBox="0 0 32 32" width="28" height="28">
+                        <svg viewBox="0 0 32 32" width="32" height="32">
                             <defs>
                                 <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" stop-color="#7c3aed"/>
@@ -26,150 +28,140 @@
                             <circle cx="16" cy="16" r="4" fill="url(#logoGrad)"/>
                         </svg>
                     </div>
-                    <span>Prevname</span>
-                </a>
-                <div class="search-nav-links">
+                    <span class="logo-text">Prevname</span>
+                </div>
+                <div class="nav-links">
                     <a href="/dashboard.html">Dashboard</a>
                     <a href="/search.html" class="active">Recherche</a>
                 </div>
             </div>
-            <div class="dash-nav-right">
-                <div class="dash-user">
-                    <div class="avatar" id="searchAvatar">U</div>
+            <div class="nav-right">
+                <div class="dash-user" style="display:flex;align-items:center;gap:8px;font-size:0.85rem;color:rgba(255,255,255,0.6)">
+                    <div class="avatar" id="searchAvatar" style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;color:#fff">U</div>
                     <span id="searchUsername">Utilisateur</span>
                 </div>
-                <button class="btn-logout" onclick="logout()">Déconnexion</button>
-            </div>
-        </nav>
-
-        <div class="search-content">
-            <div class="search-header">
-                <h1>Recherche avancée</h1>
-                <p>Recherchez dans plus de 2,1 milliards de records avec +20 critères.</p>
-            </div>
-
-            <div class="search-form-container">
-                <div class="search-tabs">
-                    <button class="search-tab active" data-tab="person">Personne</button>
-                    <button class="search-tab" data-tab="email">Email</button>
-                    <button class="search-tab" data-tab="phone">Téléphone</button>
-                    <button class="search-tab" data-tab="advanced">Avancé</button>
-                </div>
-
-                <!-- Person Tab -->
-                <div class="search-tab-content active" id="tab-person">
-                    <div class="search-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Prénom</label>
-                                <input type="text" class="search-input" id="s-firstname" placeholder="Jean">
-                            </div>
-                            <div class="form-group">
-                                <label>Nom</label>
-                                <input type="text" class="search-input" id="s-lastname" placeholder="Dupont">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Ville</label>
-                                <input type="text" class="search-input" id="s-city" placeholder="Paris">
-                            </div>
-                            <div class="form-group">
-                                <label>Pays</label>
-                                <input type="text" class="search-input" id="s-country" placeholder="France">
-                            </div>
-                        </div>
-                        <button class="btn-search" onclick="doSearch('person')">
-                            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                            Rechercher
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Email Tab -->
-                <div class="search-tab-content" id="tab-email">
-                    <div class="search-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Adresse email</label>
-                                <input type="email" class="search-input" id="s-email" placeholder="exemple@email.com">
-                            </div>
-                        </div>
-                        <button class="btn-search" onclick="doSearch('email')">
-                            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                            Rechercher
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Phone Tab -->
-                <div class="search-tab-content" id="tab-phone">
-                    <div class="search-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Numéro de téléphone</label>
-                                <input type="text" class="search-input" id="s-phone" placeholder="+33612345678">
-                            </div>
-                        </div>
-                        <button class="btn-search" onclick="doSearch('phone')">
-                            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                            Rechercher
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Advanced Tab -->
-                <div class="search-tab-content" id="tab-advanced">
-                    <div class="search-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Nom d'utilisateur</label>
-                                <input type="text" class="search-input" id="s-username" placeholder="pseudo">
-                            </div>
-                            <div class="form-group">
-                                <label>Adresse IP</label>
-                                <input type="text" class="search-input" id="s-ip" placeholder="192.168.1.1">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Discord ID</label>
-                                <input type="text" class="search-input" id="s-discord" placeholder="123456789012345678">
-                            </div>
-                            <div class="form-group">
-                                <label>SSN / NSS</label>
-                                <input type="text" class="search-input" id="s-ssn" placeholder="1 89 12 34 567 890">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>IBAN</label>
-                                <input type="text" class="search-input" id="s-iban" placeholder="FR76XXXXXXXXXXXX">
-                            </div>
-                            <div class="form-group">
-                                <label>Adresse</label>
-                                <input type="text" class="search-input" id="s-address" placeholder="123 rue Example">
-                            </div>
-                        </div>
-                        <button class="btn-search" onclick="doSearch('advanced')">
-                            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                            Rechercher
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Results -->
-            <div class="search-results" id="searchResults">
-                <div class="results-placeholder" id="resultsPlaceholder">
-                    <svg viewBox="0 0 24 24" width="48" height="48"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                    <p>Utilisez les critères ci-dessus pour effectuer une recherche</p>
-                </div>
-                <div class="results-list" id="resultsList"></div>
+                <button class="btn-logout" onclick="logout()" style="padding:8px 16px;border:1px solid rgba(239,68,68,0.3);border-radius:8px;background:rgba(239,68,68,0.1);color:#ef4444;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.3s">Déconnexion</button>
             </div>
         </div>
-    </div>
+    </nav>
 
+    <main class="search-main">
+        <div class="search-hero">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                +2,1 milliards de records indexés
+            </div>
+            <h1>Recherche <span class="highlight">avancée</span></h1>
+            <p class="search-subtitle">Recherchez dans des milliards d'enregistrements avec plus de 20 critères différents.</p>
+        </div>
+
+        <div class="search-box">
+            <div class="search-tabs-glass">
+                <button class="search-tab-glass active" data-tab="person">Personne</button>
+                <button class="search-tab-glass" data-tab="email">Email</button>
+                <button class="search-tab-glass" data-tab="phone">Téléphone</button>
+                <button class="search-tab-glass" data-tab="advanced">Avancé</button>
+            </div>
+
+            <div class="search-panel active" id="panel-person">
+                <div class="search-grid">
+                    <div class="sg-item">
+                        <label>Prénom</label>
+                        <input type="text" class="sg-input" id="s-firstname" placeholder="Jean">
+                    </div>
+                    <div class="sg-item">
+                        <label>Nom</label>
+                        <input type="text" class="sg-input" id="s-lastname" placeholder="Dupont">
+                    </div>
+                    <div class="sg-item">
+                        <label>Ville</label>
+                        <input type="text" class="sg-input" id="s-city" placeholder="Paris">
+                    </div>
+                    <div class="sg-item">
+                        <label>Pays</label>
+                        <input type="text" class="sg-input" id="s-country" placeholder="France">
+                    </div>
+                </div>
+                <button class="btn-search-glow" onclick="doSearch('person')">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    Rechercher
+                </button>
+            </div>
+
+            <div class="search-panel" id="panel-email">
+                <div class="search-grid">
+                    <div class="sg-item full">
+                        <label>Adresse email</label>
+                        <input type="email" class="sg-input" id="s-email" placeholder="exemple@email.com">
+                    </div>
+                </div>
+                <button class="btn-search-glow" onclick="doSearch('email')">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    Rechercher
+                </button>
+            </div>
+
+            <div class="search-panel" id="panel-phone">
+                <div class="search-grid">
+                    <div class="sg-item full">
+                        <label>Numéro de téléphone</label>
+                        <input type="text" class="sg-input" id="s-phone" placeholder="+33 6 12 34 56 78">
+                    </div>
+                </div>
+                <button class="btn-search-glow" onclick="doSearch('phone')">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    Rechercher
+                </button>
+            </div>
+
+            <div class="search-panel" id="panel-advanced">
+                <div class="search-grid">
+                    <div class="sg-item">
+                        <label>Nom d'utilisateur</label>
+                        <input type="text" class="sg-input" id="s-username" placeholder="pseudo">
+                    </div>
+                    <div class="sg-item">
+                        <label>Adresse IP</label>
+                        <input type="text" class="sg-input" id="s-ip" placeholder="192.168.1.1">
+                    </div>
+                    <div class="sg-item">
+                        <label>Discord ID</label>
+                        <input type="text" class="sg-input" id="s-discord" placeholder="123456789012345678">
+                    </div>
+                    <div class="sg-item">
+                        <label>SSN / NSS</label>
+                        <input type="text" class="sg-input" id="s-ssn" placeholder="1 89 12 34 567 890">
+                    </div>
+                    <div class="sg-item">
+                        <label>IBAN</label>
+                        <input type="text" class="sg-input" id="s-iban" placeholder="FR76XXXXXXXXXXXX">
+                    </div>
+                    <div class="sg-item">
+                        <label>Adresse</label>
+                        <input type="text" class="sg-input" id="s-address" placeholder="123 rue Example">
+                    </div>
+                </div>
+                <button class="btn-search-glow" onclick="doSearch('advanced')">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    Rechercher
+                </button>
+            </div>
+        </div>
+
+        <div class="search-results" id="searchResults">
+            <div class="results-message" id="resultsPlaceholder">
+                <div class="rm-icon">
+                    <svg viewBox="0 0 24 24" width="56" height="56"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <h3>Prêt à rechercher</h3>
+                <p>Utilisez les critères ci-dessus pour effectuer une recherche dans notre base de données.</p>
+            </div>
+            <div class="results-container" id="resultsContainer"></div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="search-anim.js"></script>
     <script>
         async function checkAuth() {
             const token = localStorage.getItem('token');
@@ -191,12 +183,12 @@
         }
 
         // Tabs
-        document.querySelectorAll('.search-tab').forEach(tab => {
+        document.querySelectorAll('.search-tab-glass').forEach(tab => {
             tab.addEventListener('click', () => {
-                document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.search-tab-content').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.search-tab-glass').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.search-panel').forEach(p => p.classList.remove('active'));
                 tab.classList.add('active');
-                document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+                document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
             });
         });
 
@@ -206,62 +198,73 @@
                 { name: 'Jean Dupont', email: 'jean.dupont@email.com', phone: '+33 6 12 34 56 78', address: '12 rue de Paris, 75001 Paris', source: 'Fuite 2024', breach: 'LinkedIn' },
                 { name: 'Jean Michel', email: 'jean.michel@email.com', phone: '+33 6 98 76 54 32', address: '5 avenue des Champs, 75008 Paris', source: 'Fuite 2023', breach: 'Facebook' },
                 { name: 'Jeanette Dupuis', email: 'jeanette.dupuis@email.com', phone: '+33 7 45 67 89 01', address: '34 rue de la Paix, 69002 Lyon', source: 'Fuite 2024', breach: 'Adobe' },
+                { name: 'Jean-Claude Martin', email: 'jcmartin@email.com', phone: '+33 6 87 65 43 21', address: '78 boulevard Saint-Germain, 75005 Paris', source: 'Fuite 2024', breach: 'Twitter' },
             ],
             email: [
                 { name: 'Sophie Martin', email: 'sophie.martin@email.com', phone: '+33 6 11 22 33 44', address: '8 rue de la République, 69001 Lyon', source: 'Fuite 2024', breach: 'Twitter' },
                 { name: 'Sophie Bernard', email: 'sophie.bernard@email.com', phone: '+33 6 55 66 77 88', address: '22 boulevard Haussmann, 75009 Paris', source: 'Fuite 2023', breach: 'LinkedIn' },
+                { name: 'Sophie Dubois', email: 'sophie.dubois@email.com', phone: '+33 7 99 88 77 66', address: '15 rue du Louvre, 75001 Paris', source: 'Fuite 2024', breach: 'Amazon' },
             ],
             phone: [
                 { name: 'Pierre Durand', email: 'pierre.durand@email.com', phone: '+33 6 12 34 56 78', address: '15 rue du Bac, 75007 Paris', source: 'Fuite 2024', breach: 'Doctolib' },
                 { name: 'Pierre Lefebvre', email: 'pierre.lefebvre@email.com', phone: '+33 7 23 45 67 89', address: '3 place de la Bourse, 69002 Lyon', source: 'Fuite 2023', breach: 'Amazon' },
                 { name: 'Pierre Moreau', email: 'pierre.moreau@email.com', phone: '+33 6 34 56 78 90', address: '45 rue de Rivoli, 75004 Paris', source: 'Fuite 2024', breach: 'Discord' },
+                { name: 'Pierre Petit', email: 'pierre.petit@email.com', phone: '+33 6 45 67 89 01', address: '28 rue de la Paix, 75002 Paris', source: 'Fuite 2023', breach: 'Facebook' },
             ],
             advanced: [
                 { name: 'Admin System', email: 'admin@system.com', phone: '+33 1 23 45 67 89', address: '1 place du Capitole, 31000 Toulouse', source: 'Fuite 2024', breach: 'GitHub' },
                 { name: 'Root User', email: 'root@localhost.com', phone: '+33 6 99 88 77 66', address: '42 rue du Hack, 75011 Paris', source: 'Fuite 2023', breach: 'MySQL DB' },
+                { name: 'Dev Account', email: 'dev@company.com', phone: '+33 7 11 22 33 44', address: '56 rue de l\'Innovation, 69003 Lyon', source: 'Fuite 2024', breach: 'GitLab' },
             ]
         };
 
         function doSearch(type) {
             const placeholder = document.getElementById('resultsPlaceholder');
-            const list = document.getElementById('resultsList');
+            const container = document.getElementById('resultsContainer');
             placeholder.style.display = 'none';
-            list.innerHTML = '';
+            container.innerHTML = '';
 
             const results = mockResults[type] || [];
-
             if (results.length === 0) {
-                list.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
+                container.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
                 return;
             }
 
-            list.innerHTML = `
-                <div class="results-header">
-                    <span class="results-count">${results.length} résultat(s) trouvé(s)</span>
-                    <span class="results-time">Temps : ${Math.floor(Math.random() * 50 + 10)}ms</span>
+            container.innerHTML = `
+                <div class="results-bar">
+                    <div class="rb-left">
+                        <span class="rb-badge">${results.length} résultat(s)</span>
+                        <span class="rb-detail">trouvé(s) en ${Math.floor(Math.random() * 40 + 10)}ms</span>
+                    </div>
+                    <div class="rb-right">
+                        <button class="rb-btn" onclick="alert('Export PDF simulé')">PDF</button>
+                        <button class="rb-btn" onclick="alert('Export JSON simulé')">JSON</button>
+                    </div>
                 </div>
-                ${results.map(r => `
-                    <div class="result-card">
-                        <div class="result-main">
-                            <div class="result-avatar">${r.name.charAt(0)}</div>
-                            <div class="result-info">
-                                <h4>${r.name}</h4>
-                                <div class="result-details">
-                                    <span><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg> ${r.email}</span>
-                                    <span><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> ${r.phone}</span>
-                                    <span><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> ${r.address}</span>
+                <div class="results-list">
+                    ${results.map((r, i) => `
+                        <div class="result-card-glow" style="animation-delay: ${i * 0.07}s">
+                            <div class="rcg-left">
+                                <div class="rcg-avatar">${r.name.charAt(0)}</div>
+                                <div class="rcg-info">
+                                    <h4>${r.name}</h4>
+                                    <div class="rcg-details">
+                                        <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg> ${r.email}</span>
+                                        <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> ${r.phone}</span>
+                                        <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> ${r.address}</span>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="rcg-right">
+                                <span class="rcg-breach">${r.breach}</span>
+                                <span class="rcg-source">${r.source}</span>
+                            </div>
                         </div>
-                        <div class="result-meta">
-                            <span class="result-breach">${r.breach}</span>
-                            <span class="result-source">${r.source}</span>
-                        </div>
-                    </div>
-                `).join('')}
+                    `).join('')}
+                </div>
             `;
 
-            list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
         }
 
         checkAuth();
