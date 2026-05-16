@@ -78,56 +78,16 @@
         </div>
 
         <div class="search-box">
-            <div class="search-tabs-glass">
-                <button class="search-tab-glass active" data-tab="person">Personne</button>
-                <button class="search-tab-glass" data-tab="email">Email</button>
-                <button class="search-tab-glass" data-tab="phone">Téléphone</button>
-                <button class="search-tab-glass" data-tab="advanced">Avancé</button>
+            <div class="search-grid">
+                <div class="sg-item"><label>Prénom</label><input type="text" class="sg-input" id="s-firstname" placeholder="Jean"></div>
+                <div class="sg-item"><label>Nom</label><input type="text" class="sg-input" id="s-lastname" placeholder="Dupont"></div>
+                <div class="sg-item"><label>Pseudo</label><input type="text" class="sg-input" id="s-username" placeholder="pseudo"></div>
+                <div class="sg-item"><label>Discord ID</label><input type="text" class="sg-input" id="s-discord" placeholder="123456789012345678"></div>
+                <div class="sg-item full"><label>Adresse</label><input type="text" class="sg-input" id="s-address" placeholder="123 rue Example"></div>
+                <div class="sg-item full"><label>Code postal</label><input type="text" class="sg-input" id="s-zip" placeholder="75001"></div>
             </div>
-
-            <div class="search-panel active" id="panel-person">
-                <div class="search-grid">
-                    <div class="sg-item"><label>Prénom</label><input type="text" class="sg-input" id="s-firstname" placeholder="Jean"></div>
-                    <div class="sg-item"><label>Nom</label><input type="text" class="sg-input" id="s-lastname" placeholder="Dupont"></div>
-                    <div class="sg-item"><label>Ville</label><input type="text" class="sg-input" id="s-city" placeholder="Paris"></div>
-                    <div class="sg-item"><label>Pays</label><input type="text" class="sg-input" id="s-country" placeholder="France"></div>
-                </div>
-                <button class="btn-search-glow" onclick="doSearch('person')">
-                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                    Rechercher
-                </button>
-            </div>
-
-            <div class="search-panel" id="panel-email">
-                <div class="search-grid">
-                    <div class="sg-item full"><label>Adresse email</label><input type="email" class="sg-input" id="s-email" placeholder="exemple@email.com"></div>
-                </div>
-                <button class="btn-search-glow" onclick="doSearch('email')">
-                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                    Rechercher
-                </button>
-            </div>
-
-            <div class="search-panel" id="panel-phone">
-                <div class="search-grid">
-                    <div class="sg-item full"><label>Numéro de téléphone</label><input type="text" class="sg-input" id="s-phone" placeholder="+33 6 12 34 56 78"></div>
-                </div>
-                <button class="btn-search-glow" onclick="doSearch('phone')">
-                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                    Rechercher
-                </button>
-            </div>
-
-            <div class="search-panel" id="panel-advanced">
-                <div class="search-grid">
-                    <div class="sg-item"><label>Nom d'utilisateur</label><input type="text" class="sg-input" id="s-username" placeholder="pseudo"></div>
-                    <div class="sg-item"><label>Adresse IP</label><input type="text" class="sg-input" id="s-ip" placeholder="192.168.1.1"></div>
-                    <div class="sg-item"><label>Discord ID</label><input type="text" class="sg-input" id="s-discord" placeholder="123456789012345678"></div>
-                    <div class="sg-item"><label>SSN / NSS</label><input type="text" class="sg-input" id="s-ssn" placeholder="1 89 12 34 567 890"></div>
-                    <div class="sg-item"><label>IBAN</label><input type="text" class="sg-input" id="s-iban" placeholder="FR76XXXXXXXXXXXX"></div>
-                    <div class="sg-item"><label>Adresse</label><input type="text" class="sg-input" id="s-address" placeholder="123 rue Example"></div>
-                </div>
-                <button class="btn-search-glow" onclick="doSearch('advanced')">
+            <div style="text-align:center;padding-bottom:24px">
+                <button class="btn-search-glow" onclick="doSearch()">
                     <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                     Rechercher
                 </button>
@@ -161,43 +121,25 @@
 
         function logout() { localStorage.clear(); window.location.href = '/'; }
 
-        document.querySelectorAll('.search-tab-glass').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.search-tab-glass').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.search-panel').forEach(p => p.classList.remove('active'));
-                tab.classList.add('active');
-                document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-            });
-        });
-
-        const mockResults = {
-            person: [
-                { name: 'Jean Dupont', email: 'jean.dupont@email.com', phone: '+33 6 12 34 56 78', address: '12 rue de Paris, 75001 Paris', source: 'Fuite 2024', breach: 'LinkedIn' },
-                { name: 'Jean Michel', email: 'jean.michel@email.com', phone: '+33 6 98 76 54 32', address: '5 avenue des Champs, 75008 Paris', source: 'Fuite 2023', breach: 'Facebook' },
-                { name: 'Jeanette Dupuis', email: 'jeanette.dupuis@email.com', phone: '+33 7 45 67 89 01', address: '34 rue de la Paix, 69002 Lyon', source: 'Fuite 2024', breach: 'Adobe' },
-            ],
-            email: [
-                { name: 'Sophie Martin', email: 'sophie.martin@email.com', phone: '+33 6 11 22 33 44', address: '8 rue de la République, 69001 Lyon', source: 'Fuite 2024', breach: 'Twitter' },
-                { name: 'Sophie Bernard', email: 'sophie.bernard@email.com', phone: '+33 6 55 66 77 88', address: '22 boulevard Haussmann, 75009 Paris', source: 'Fuite 2023', breach: 'LinkedIn' },
-            ],
-            phone: [
-                { name: 'Pierre Durand', email: 'pierre.durand@email.com', phone: '+33 6 12 34 56 78', address: '15 rue du Bac, 75007 Paris', source: 'Fuite 2024', breach: 'Doctolib' },
-                { name: 'Pierre Lefebvre', email: 'pierre.lefebvre@email.com', phone: '+33 7 23 45 67 89', address: '3 place de la Bourse, 69002 Lyon', source: 'Fuite 2023', breach: 'Amazon' },
-                { name: 'Pierre Moreau', email: 'pierre.moreau@email.com', phone: '+33 6 34 56 78 90', address: '45 rue de Rivoli, 75004 Paris', source: 'Fuite 2024', breach: 'Discord' },
-            ],
-            advanced: [
-                { name: 'Admin System', email: 'admin@system.com', phone: '+33 1 23 45 67 89', address: '1 place du Capitole, 31000 Toulouse', source: 'Fuite 2024', breach: 'GitHub' },
-                { name: 'Root User', email: 'root@localhost.com', phone: '+33 6 99 88 77 66', address: '42 rue du Hack, 75011 Paris', source: 'Fuite 2023', breach: 'MySQL DB' },
-            ]
-        };
-
-        function doSearch(type) {
+        function doSearch() {
+            const firstname = document.getElementById('s-firstname').value.trim();
+            const lastname = document.getElementById('s-lastname').value.trim();
+            const username = document.getElementById('s-username').value.trim();
+            const discord = document.getElementById('s-discord').value.trim();
+            const address = document.getElementById('s-address').value.trim();
+            const zip = document.getElementById('s-zip').value.trim();
             const placeholder = document.getElementById('resultsPlaceholder');
             const container = document.getElementById('resultsContainer');
             placeholder.style.display = 'none';
-            container.innerHTML = '';
-            const results = mockResults[type] || [];
-            if (results.length === 0) { container.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>'; return; }
+            container.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
+            const results = [
+                { name: 'Jean Dupont', email: 'jean.dupont@email.com', phone: '+33 6 12 34 56 78', address: '12 rue de Paris, 75001 Paris', pseudo: 'jeandu', discord: '123456789012345678', source: 'Fuite 2024', breach: 'LinkedIn' },
+                { name: 'Sophie Martin', email: 'sophie.martin@email.com', phone: '+33 6 11 22 33 44', address: '8 rue de la République, 69001 Lyon', pseudo: 'sophmrt', discord: '234567890123456789', source: 'Fuite 2024', breach: 'Twitter' },
+                { name: 'Pierre Durand', email: 'pierre.durand@email.com', phone: '+33 6 12 34 56 78', address: '15 rue du Bac, 75007 Paris', pseudo: 'pdurand', discord: '345678901234567890', source: 'Fuite 2024', breach: 'Doctolib' },
+                { name: 'Admin System', email: 'admin@system.com', phone: '+33 1 23 45 67 89', address: '1 place du Capitole, 31000 Toulouse', pseudo: 'admin', discord: '456789012345678901', source: 'Fuite 2024', breach: 'GitHub' },
+                { name: 'Jean Michel', email: 'jean.michel@email.com', phone: '+33 6 98 76 54 32', address: '5 avenue des Champs, 75008 Paris', pseudo: 'jmichel', discord: '567890123456789012', source: 'Fuite 2023', breach: 'Facebook' },
+            ];
+            if (results.length === 0) return;
             container.innerHTML = `
                 <div class="results-bar">
                     <div class="rb-left"><span class="rb-badge">${results.length} résultat(s)</span><span class="rb-detail">en ${Math.floor(Math.random() * 40 + 10)}ms</span></div>
@@ -213,6 +155,8 @@
                                     <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg> ${r.email}</span>
                                     <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> ${r.phone}</span>
                                     <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> ${r.address}</span>
+                                    <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg> ${r.pseudo}</span>
+                                    <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg> ${r.discord}</span>
                                 </div>
                             </div>
                         </div>
