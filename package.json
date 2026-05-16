@@ -1,7 +1,7 @@
 {
-  "name": "prevname",
+  "name": "xdss",
   "version": "1.0.0",
-  "description": "Prevname - Moteur de Recherche OSINT",
+  "description": "Xdss - Moteur de Recherche OSINT",
   "scripts": {
     "start": "node api/index.js",
     "vercel-build": "echo build done"
