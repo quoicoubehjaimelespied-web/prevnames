@@ -7,8 +7,6 @@ const path = require('path');
 
 const app = express();
 const JWT_SECRET = 'prevname_secret_key_change_in_prod';
-
-// Use /tmp on Vercel (writable), or local dir otherwise
 const DB_DIR = process.env.VERCEL ? '/tmp' : __dirname;
 const DB_PATH = path.join(DB_DIR, 'db.json');
 
@@ -82,27 +80,8 @@ app.get('/api/me', auth, (req, res) => {
     res.json({ id: user.id, username: user.username, email: user.email, credits: user.credits });
 });
 
-// Serve static files
-app.use(express.static(path.join(__dirname, '..')));
-
-// Fallback to index.html for SPA-like routing
-app.get('*', (req, res) => {
-    if (req.path.startsWith('/api/')) {
-        return res.status(404).json({ error: 'Route API inconnue' });
-    }
-    const filePath = path.join(__dirname, '..', req.path === '/' ? 'index.html' : req.path);
-    if (fs.existsSync(filePath)) {
-        return res.sendFile(filePath);
-    }
-    res.sendFile(path.join(__dirname, '..', 'index.html'));
+app.get('/api/*', (req, res) => {
+    res.status(404).json({ error: 'Route API inconnue' });
 });
 
 module.exports = app;
-
-// For local dev
-if (!process.env.VERCEL) {
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-        console.log(`Serveur Prevname démarré sur http://localhost:${PORT}`);
-    });
-}
