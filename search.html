@@ -107,7 +107,91 @@
             </div>
             <div class="results-container" id="resultsContainer"></div>
         </div>
+
+        <!-- OSINT Guide -->
+        <div class="osint-section" id="osintSection">
+            <div class="osint-header">
+                <h2>&#128270; Guide OSINT &mdash; Recherches associées</h2>
+                <p>Remplis les champs et clique sur Rechercher pour générer les recherches OSINT.</p>
+            </div>
+            <div class="osint-card" id="osint-google">
+                <div class="osint-card-header"><span class="osint-num">1</span> Recherche Google avancée</div>
+                <div class="osint-body" id="osint-google-body">
+                    <div class="osint-grp">
+                        <div class="osint-label">Requête de base</div>
+                        <div class="osint-code" id="oc-base">"Prénom Nom"</div>
+                        <div class="osint-links" id="ol-base"></div>
+                    </div>
+                    <div class="osint-grp">
+                        <div class="osint-label">Sites spécifiques</div>
+                        <div class="osint-code" id="oc-li">site:linkedin.com "Prénom Nom"</div>
+                        <div class="osint-links" id="ol-li"></div>
+                        <div class="osint-code" id="oc-fb">site:facebook.com "Prénom Nom"</div>
+                        <div class="osint-links" id="ol-fb"></div>
+                        <div class="osint-code" id="oc-tw">site:twitter.com "Prénom Nom"</div>
+                        <div class="osint-links" id="ol-tw"></div>
+                        <div class="osint-code" id="oc-ig">site:instagram.com "Prénom Nom"</div>
+                        <div class="osint-links" id="ol-ig"></div>
+                        <div class="osint-code" id="oc-tk">site:tiktok.com "Prénom Nom"</div>
+                        <div class="osint-links" id="ol-tk"></div>
+                        <div class="osint-code" id="oc-rd">site:reddit.com "Prénom Nom"</div>
+                        <div class="osint-links" id="ol-rd"></div>
+                    </div>
+                    <div class="osint-grp">
+                        <div class="osint-label">Documents publics</div>
+                        <div class="osint-code" id="oc-pdf">"Prénom Nom" filetype:pdf</div>
+                        <div class="osint-links" id="ol-pdf"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="osint-card" id="osint-pseudo">
+                <div class="osint-card-header"><span class="osint-num">2</span> Recherche de pseudos</div>
+                <div class="osint-body"><div class="osint-code" id="oc-pseudo">pseudo123</div><div class="osint-links" id="ol-pseudo"></div><div class="osint-links" id="ol-pseudo-full"></div></div>
+            </div>
+            <div class="osint-card" id="osint-email">
+                <div class="osint-card-header"><span class="osint-num">3</span> Vérification d'email</div>
+                <div class="osint-body"><div class="osint-code" id="oc-email">"mail@example.com"</div><div class="osint-links" id="ol-email"></div></div>
+            </div>
+            <div class="osint-card" id="osint-phone">
+                <div class="osint-card-header"><span class="osint-num">4</span> Recherche par numéro</div>
+                <div class="osint-body"><div class="osint-code" id="oc-phone">"06 12 34 56 78"</div><div class="osint-links" id="ol-phone"></div></div>
+            </div>
+            <div class="osint-card" id="osint-images">
+                <div class="osint-card-header"><span class="osint-num">5</span> Recherche d'images</div>
+                <div class="osint-body"><div class="osint-links" id="ol-images"></div></div>
+            </div>
+            <div class="osint-card">
+                <div class="osint-card-header"><span class="osint-num">6</span> Archives web</div>
+                <div class="osint-body"><div class="osint-links" id="ol-archives"></div></div>
+            </div>
+            <div class="osint-card osint-rule" style="text-align:center;padding:1rem">
+                <p style="color:#a78bfa;font-weight:600;font-size:0.9rem">Le meilleur OSINT n'est pas "pirater". C'est observer, recouper, vérifier.</p>
+                <p style="color:#64748b;font-size:0.75rem;margin-top:0.3rem">&#9888; Utilisation légale uniquement &bull; Respect de la vie privée</p>
+            </div>
+        </div>
     </main>
+
+    <style>
+    .osint-section{max-width:860px;margin:2rem auto;padding:0 1rem}
+    .osint-header{text-align:center;margin-bottom:1rem;padding:1.25rem;background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.2);border-radius:14px}
+    .osint-header h2{font-size:1.2rem;font-weight:700;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.3rem}
+    .osint-header p{color:#94a3b8;font-size:0.8rem}
+    .osint-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;margin-bottom:0.6rem;overflow:hidden;transition:border-color 0.3s}
+    .osint-card.active{border-color:rgba(124,58,237,0.4);background:rgba(124,58,237,0.06)}
+    .osint-card-header{padding:0.65rem 1rem;font-size:0.82rem;font-weight:600;color:#cbd5e1;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:0.5rem}
+    .osint-num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:rgba(124,58,237,0.15);color:#a78bfa;font-size:0.6rem;font-weight:700;flex-shrink:0}
+    .osint-body{padding:0.65rem 1rem}
+    .osint-body p{color:#94a3b8;font-size:0.8rem;margin-bottom:0.4rem}
+    .osint-grp{margin-bottom:0.6rem}
+    .osint-grp:last-child{margin-bottom:0}
+    .osint-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.05em;color:#64748b;margin-bottom:0.25rem;font-weight:600}
+    .osint-code{background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:0.4rem 0.65rem;font-family:"SF Mono","Fira Code",monospace;font-size:0.75rem;color:#e2e8f0;margin-bottom:0.3rem;white-space:pre-wrap;word-break:break-all}
+    .osint-links{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.3rem}
+    .osint-links:empty{display:none}
+    .osint-links a{display:inline-flex;align-items:center;gap:0.25rem;padding:0.22rem 0.45rem;background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.12);border-radius:5px;color:#93c5fd;text-decoration:none;font-size:0.7rem;transition:all 0.2s}
+    .osint-links a:hover{background:rgba(96,165,250,0.18);border-color:#60a5fa;color:#fff}
+    @media(max-width:640px){.osint-section{padding:0 0.75rem}}
+    </style>
 
     <script>
         async function checkAuth() {
@@ -165,6 +249,70 @@
                         </div>
                         <div class="rcg-right"><span class="rcg-breach">${r.breach}</span><span class="rcg-source">${r.source}</span></div>
                     </div>`).join('')}</div>`;
+
+            generateOSINT(firstname, lastname, username, discord);
+        }
+
+        // === OSINT HELPERS ===
+        function q(v) { return `"${v.trim()}"`; }
+        function enc(v) { return encodeURIComponent(v.trim()); }
+        function gs(q) { const u = new URL('https://www.google.com/search'); u.searchParams.set('q', q); return u.href; }
+        function bs(q) { const u = new URL('https://www.bing.com/search'); u.searchParams.set('q', q); return u.href; }
+        function sl(href, label) { return `<a href="${href}" target="_blank" rel="noopener">&#8599; ${label}</a>`; }
+        function setLinks(id, items) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.innerHTML = (!items || items.length === 0) ? '' : items.map(i => sl(i.u, i.l)).join('');
+        }
+
+        function generateOSINT(firstname, lastname, username, discord) {
+            let name = '';
+            if (firstname && lastname) name = `${firstname} ${lastname}`;
+            else if (firstname) name = firstname;
+            else if (lastname) name = lastname;
+            else name = username || discord || '';
+            if (!name) name = username || discord || 'Prénom Nom';
+
+            const quoted = q(name);
+            const e = enc(name);
+            const isPseudo = !!username && !firstname && !lastname;
+
+            document.getElementById('oc-base').textContent = quoted;
+            setLinks('ol-base', [{u:gs(quoted),l:'Google'},{u:bs(quoted),l:'Bing'},{u:`https://duckduckgo.com/?q=${e}`,l:'DuckDuckGo'}]);
+
+            const sites = [['li','linkedin.com','LinkedIn'],['fb','facebook.com','Facebook'],['tw','twitter.com','Twitter'],['ig','instagram.com','Instagram'],['tk','tiktok.com','TikTok'],['rd','reddit.com','Reddit']];
+            for(const [id,domain,label] of sites){
+                const d = `site:${domain} ${quoted}`;
+                const el = document.getElementById(`oc-${id}`);
+                if(el) el.textContent = d;
+                setLinks(`ol-${id}`,[{u:gs(d),l:`Google ${label}`},{u:bs(d),l:`Bing ${label}`}]);
+            }
+
+            const pdf = `${quoted} filetype:pdf`;
+            document.getElementById('oc-pdf').textContent = pdf;
+            setLinks('ol-pdf',[{u:gs(pdf),l:'Google PDF'},{u:gs(`${quoted} filetype:doc OR filetype:docx`),l:'Google DOC'}]);
+
+            const pu = username || name;
+            document.getElementById('oc-pseudo').textContent = pu;
+            setLinks('ol-pseudo',[{u:gs(q(pu)),l:'Google'},{u:`https://www.google.com/search?q=${enc(pu)}&tbm=isch`,l:'Images'},{u:`https://yandex.com/images/search?text=${enc(pu)}`,l:'Yandex'}]);
+            setLinks('ol-pseudo-full',[{u:`https://github.com/search?q=${enc(pu)}&type=users`,l:'GitHub'},{u:`https://www.reddit.com/search/?q=${enc(pu)}`,l:'Reddit'},{u:`https://www.twitch.tv/${enc(pu)}`,l:'Twitch'},{u:`https://store.steampowered.com/search/?term=${enc(pu)}`,l:'Steam'},{u:'https://namechk.com/',l:'Namechk'}]);
+
+            const em = `${quoted} email`;
+            document.getElementById('oc-email').textContent = em;
+            setLinks('ol-email',[{u:gs(em),l:'Google'},{u:`https://github.com/search?q=${e}&type=Users`,l:'GitHub'},{u:`https://www.gravatar.com/${e}`,l:'Gravatar'},{u:'https://haveibeenpwned.com/',l:'HaveIBeenPwned'}]);
+
+            const ph = `${quoted} téléphone OR phone`;
+            document.getElementById('oc-phone').textContent = ph;
+            setLinks('ol-phone',[{u:gs(ph),l:'Google'},{u:bs(ph),l:'Bing'}]);
+
+            setLinks('ol-images',[{u:`https://www.google.com/search?q=${e}&tbm=isch`,l:'Google Images'},{u:`https://yandex.com/images/search?text=${e}`,l:'Yandex'},{u:`https://www.bing.com/images/search?q=${e}`,l:'Bing Images'}]);
+            setLinks('ol-archives',[{u:`https://web.archive.org/web/*/${e}`,l:'Wayback Machine'},{u:gs(`${quoted} site:web.archive.org`),l:'Google Archive'}]);
+
+            document.querySelectorAll('.osint-card').forEach(c => c.classList.remove('active'));
+            if(isPseudo) document.getElementById('osint-pseudo').classList.add('active');
+            else if(name && name!=='Prénom Nom'){ document.getElementById('osint-google').classList.add('active'); document.getElementById('osint-images').classList.add('active'); }
+
+            setTimeout(()=>document.getElementById('osintSection').scrollIntoView({behavior:'smooth'}),300);
         }
 
         checkAuth();
