@@ -8,25 +8,7 @@
     <link rel="stylesheet" href="auth.css">
     <link rel="stylesheet" href="search.css">
 </head>
-<body class="search-page-body">
-    <div class="bg-orb orb-1"></div>
-    <div class="bg-orb orb-2"></div>
-    <div class="bg-orb orb-3"></div>
-    <div class="bg-shape s1"></div>
-    <div class="bg-shape s2"></div>
-    <div class="bg-shape s3"></div>
-    <div class="bg-shape s4"></div>
-    <div class="bg-shape s5"></div>
-    <div class="bg-particle p1"></div>
-    <div class="bg-particle p2"></div>
-    <div class="bg-particle p3"></div>
-    <div class="bg-particle p4"></div>
-    <div class="bg-particle p5"></div>
-    <div class="bg-particle p6"></div>
-    <div class="bg-particle p7"></div>
-    <div class="bg-particle p8"></div>
-    <div class="bg-particle p9"></div>
-    <div class="bg-particle p10"></div>
+<body style="background:#05050a!important;background:linear-gradient(135deg,#0d0d2b,#05050a,#1a0a2e,#05050a)!important;min-height:100vh;margin:0">
 
     <nav>
         <div class="nav-inner">
@@ -57,7 +39,7 @@
                     <div class="avatar" id="searchAvatar" style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;color:#fff">U</div>
                     <span id="searchUsername">Utilisateur</span>
                 </div>
-                <button class="btn-logout" onclick="logout()" style="padding:8px 16px;border:1px solid rgba(239,68,68,0.3);border-radius:8px;background:rgba(239,68,68,0.1);color:#ef4444;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.3s">Déconnexion</button>
+                <button class="btn-logout" onclick="logout()" style="padding:8px 16px;border:1px solid rgba(239,68,68,0.3);border-radius:8px;background:rgba(239,68,68,0.1);color:#ef4444;font-size:0.8rem;font-weight:600;cursor:pointer">Déconnexion</button>
             </div>
         </div>
     </nav>
@@ -82,22 +64,10 @@
 
             <div class="search-panel active" id="panel-person">
                 <div class="search-grid">
-                    <div class="sg-item">
-                        <label>Prénom</label>
-                        <input type="text" class="sg-input" id="s-firstname" placeholder="Jean">
-                    </div>
-                    <div class="sg-item">
-                        <label>Nom</label>
-                        <input type="text" class="sg-input" id="s-lastname" placeholder="Dupont">
-                    </div>
-                    <div class="sg-item">
-                        <label>Ville</label>
-                        <input type="text" class="sg-input" id="s-city" placeholder="Paris">
-                    </div>
-                    <div class="sg-item">
-                        <label>Pays</label>
-                        <input type="text" class="sg-input" id="s-country" placeholder="France">
-                    </div>
+                    <div class="sg-item"><label>Prénom</label><input type="text" class="sg-input" id="s-firstname" placeholder="Jean"></div>
+                    <div class="sg-item"><label>Nom</label><input type="text" class="sg-input" id="s-lastname" placeholder="Dupont"></div>
+                    <div class="sg-item"><label>Ville</label><input type="text" class="sg-input" id="s-city" placeholder="Paris"></div>
+                    <div class="sg-item"><label>Pays</label><input type="text" class="sg-input" id="s-country" placeholder="France"></div>
                 </div>
                 <button class="btn-search-glow" onclick="doSearch('person')">
                     <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
@@ -107,10 +77,7 @@
 
             <div class="search-panel" id="panel-email">
                 <div class="search-grid">
-                    <div class="sg-item full">
-                        <label>Adresse email</label>
-                        <input type="email" class="sg-input" id="s-email" placeholder="exemple@email.com">
-                    </div>
+                    <div class="sg-item full"><label>Adresse email</label><input type="email" class="sg-input" id="s-email" placeholder="exemple@email.com"></div>
                 </div>
                 <button class="btn-search-glow" onclick="doSearch('email')">
                     <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
@@ -120,10 +87,7 @@
 
             <div class="search-panel" id="panel-phone">
                 <div class="search-grid">
-                    <div class="sg-item full">
-                        <label>Numéro de téléphone</label>
-                        <input type="text" class="sg-input" id="s-phone" placeholder="+33 6 12 34 56 78">
-                    </div>
+                    <div class="sg-item full"><label>Numéro de téléphone</label><input type="text" class="sg-input" id="s-phone" placeholder="+33 6 12 34 56 78"></div>
                 </div>
                 <button class="btn-search-glow" onclick="doSearch('phone')">
                     <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
@@ -133,30 +97,12 @@
 
             <div class="search-panel" id="panel-advanced">
                 <div class="search-grid">
-                    <div class="sg-item">
-                        <label>Nom d'utilisateur</label>
-                        <input type="text" class="sg-input" id="s-username" placeholder="pseudo">
-                    </div>
-                    <div class="sg-item">
-                        <label>Adresse IP</label>
-                        <input type="text" class="sg-input" id="s-ip" placeholder="192.168.1.1">
-                    </div>
-                    <div class="sg-item">
-                        <label>Discord ID</label>
-                        <input type="text" class="sg-input" id="s-discord" placeholder="123456789012345678">
-                    </div>
-                    <div class="sg-item">
-                        <label>SSN / NSS</label>
-                        <input type="text" class="sg-input" id="s-ssn" placeholder="1 89 12 34 567 890">
-                    </div>
-                    <div class="sg-item">
-                        <label>IBAN</label>
-                        <input type="text" class="sg-input" id="s-iban" placeholder="FR76XXXXXXXXXXXX">
-                    </div>
-                    <div class="sg-item">
-                        <label>Adresse</label>
-                        <input type="text" class="sg-input" id="s-address" placeholder="123 rue Example">
-                    </div>
+                    <div class="sg-item"><label>Nom d'utilisateur</label><input type="text" class="sg-input" id="s-username" placeholder="pseudo"></div>
+                    <div class="sg-item"><label>Adresse IP</label><input type="text" class="sg-input" id="s-ip" placeholder="192.168.1.1"></div>
+                    <div class="sg-item"><label>Discord ID</label><input type="text" class="sg-input" id="s-discord" placeholder="123456789012345678"></div>
+                    <div class="sg-item"><label>SSN / NSS</label><input type="text" class="sg-input" id="s-ssn" placeholder="1 89 12 34 567 890"></div>
+                    <div class="sg-item"><label>IBAN</label><input type="text" class="sg-input" id="s-iban" placeholder="FR76XXXXXXXXXXXX"></div>
+                    <div class="sg-item"><label>Adresse</label><input type="text" class="sg-input" id="s-address" placeholder="123 rue Example"></div>
                 </div>
                 <button class="btn-search-glow" onclick="doSearch('advanced')">
                     <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
@@ -165,7 +111,7 @@
             </div>
         </div>
 
-        <div class="search-results" id="searchResults">
+        <div class="search-results">
             <div class="results-message" id="resultsPlaceholder">
                 <div class="rm-icon">
                     <svg viewBox="0 0 24 24" width="56" height="56"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
@@ -182,9 +128,7 @@
             const token = localStorage.getItem('token');
             if (!token) { window.location.href = '/login.html'; return; }
             try {
-                const res = await fetch('/api/me', {
-                    headers: { 'Authorization': 'Bearer ' + token }
-                });
+                const res = await fetch('/api/me', { headers: { 'Authorization': 'Bearer ' + token } });
                 if (!res.ok) { localStorage.clear(); window.location.href = '/login.html'; return; }
                 const user = await res.json();
                 document.getElementById('searchUsername').textContent = user.username;
@@ -192,12 +136,8 @@
             } catch { localStorage.clear(); window.location.href = '/login.html'; }
         }
 
-        function logout() {
-            localStorage.clear();
-            window.location.href = '/';
-        }
+        function logout() { localStorage.clear(); window.location.href = '/'; }
 
-        // Tabs
         document.querySelectorAll('.search-tab-glass').forEach(tab => {
             tab.addEventListener('click', () => {
                 document.querySelectorAll('.search-tab-glass').forEach(t => t.classList.remove('active'));
@@ -207,29 +147,24 @@
             });
         });
 
-        // Mock results
         const mockResults = {
             person: [
                 { name: 'Jean Dupont', email: 'jean.dupont@email.com', phone: '+33 6 12 34 56 78', address: '12 rue de Paris, 75001 Paris', source: 'Fuite 2024', breach: 'LinkedIn' },
                 { name: 'Jean Michel', email: 'jean.michel@email.com', phone: '+33 6 98 76 54 32', address: '5 avenue des Champs, 75008 Paris', source: 'Fuite 2023', breach: 'Facebook' },
                 { name: 'Jeanette Dupuis', email: 'jeanette.dupuis@email.com', phone: '+33 7 45 67 89 01', address: '34 rue de la Paix, 69002 Lyon', source: 'Fuite 2024', breach: 'Adobe' },
-                { name: 'Jean-Claude Martin', email: 'jcmartin@email.com', phone: '+33 6 87 65 43 21', address: '78 boulevard Saint-Germain, 75005 Paris', source: 'Fuite 2024', breach: 'Twitter' },
             ],
             email: [
                 { name: 'Sophie Martin', email: 'sophie.martin@email.com', phone: '+33 6 11 22 33 44', address: '8 rue de la République, 69001 Lyon', source: 'Fuite 2024', breach: 'Twitter' },
                 { name: 'Sophie Bernard', email: 'sophie.bernard@email.com', phone: '+33 6 55 66 77 88', address: '22 boulevard Haussmann, 75009 Paris', source: 'Fuite 2023', breach: 'LinkedIn' },
-                { name: 'Sophie Dubois', email: 'sophie.dubois@email.com', phone: '+33 7 99 88 77 66', address: '15 rue du Louvre, 75001 Paris', source: 'Fuite 2024', breach: 'Amazon' },
             ],
             phone: [
                 { name: 'Pierre Durand', email: 'pierre.durand@email.com', phone: '+33 6 12 34 56 78', address: '15 rue du Bac, 75007 Paris', source: 'Fuite 2024', breach: 'Doctolib' },
                 { name: 'Pierre Lefebvre', email: 'pierre.lefebvre@email.com', phone: '+33 7 23 45 67 89', address: '3 place de la Bourse, 69002 Lyon', source: 'Fuite 2023', breach: 'Amazon' },
                 { name: 'Pierre Moreau', email: 'pierre.moreau@email.com', phone: '+33 6 34 56 78 90', address: '45 rue de Rivoli, 75004 Paris', source: 'Fuite 2024', breach: 'Discord' },
-                { name: 'Pierre Petit', email: 'pierre.petit@email.com', phone: '+33 6 45 67 89 01', address: '28 rue de la Paix, 75002 Paris', source: 'Fuite 2023', breach: 'Facebook' },
             ],
             advanced: [
                 { name: 'Admin System', email: 'admin@system.com', phone: '+33 1 23 45 67 89', address: '1 place du Capitole, 31000 Toulouse', source: 'Fuite 2024', breach: 'GitHub' },
                 { name: 'Root User', email: 'root@localhost.com', phone: '+33 6 99 88 77 66', address: '42 rue du Hack, 75011 Paris', source: 'Fuite 2023', breach: 'MySQL DB' },
-                { name: 'Dev Account', email: 'dev@company.com', phone: '+33 7 11 22 33 44', address: '56 rue de l\'Innovation, 69003 Lyon', source: 'Fuite 2024', breach: 'GitLab' },
             ]
         };
 
@@ -238,48 +173,28 @@
             const container = document.getElementById('resultsContainer');
             placeholder.style.display = 'none';
             container.innerHTML = '';
-
             const results = mockResults[type] || [];
-            if (results.length === 0) {
-                container.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
-                return;
-            }
-
+            if (results.length === 0) { container.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>'; return; }
             container.innerHTML = `
                 <div class="results-bar">
-                    <div class="rb-left">
-                        <span class="rb-badge">${results.length} résultat(s)</span>
-                        <span class="rb-detail">trouvé(s) en ${Math.floor(Math.random() * 40 + 10)}ms</span>
-                    </div>
-                    <div class="rb-right">
-                        <button class="rb-btn" onclick="alert('Export PDF simulé')">PDF</button>
-                        <button class="rb-btn" onclick="alert('Export JSON simulé')">JSON</button>
-                    </div>
+                    <div class="rb-left"><span class="rb-badge">${results.length} résultat(s)</span><span class="rb-detail">en ${Math.floor(Math.random() * 40 + 10)}ms</span></div>
+                    <div class="rb-right"><button class="rb-btn" onclick="alert('Export PDF')">PDF</button><button class="rb-btn" onclick="alert('Export JSON')">JSON</button></div>
                 </div>
-                <div class="results-list">
-                    ${results.map((r, i) => `
-                        <div class="result-card-glow" style="animation-delay: ${i * 0.07}s">
-                            <div class="rcg-left">
-                                <div class="rcg-avatar">${r.name.charAt(0)}</div>
-                                <div class="rcg-info">
-                                    <h4>${r.name}</h4>
-                                    <div class="rcg-details">
-                                        <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg> ${r.email}</span>
-                                        <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> ${r.phone}</span>
-                                        <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> ${r.address}</span>
-                                    </div>
+                <div class="results-list">${results.map((r, i) => `
+                    <div class="result-card-glow" style="animation:cardIn 0.4s ease ${i*0.07}s both">
+                        <div class="rcg-left">
+                            <div class="rcg-avatar">${r.name.charAt(0)}</div>
+                            <div class="rcg-info">
+                                <h4>${r.name}</h4>
+                                <div class="rcg-details">
+                                    <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg> ${r.email}</span>
+                                    <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> ${r.phone}</span>
+                                    <span class="rcg-detail"><svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> ${r.address}</span>
                                 </div>
                             </div>
-                            <div class="rcg-right">
-                                <span class="rcg-breach">${r.breach}</span>
-                                <span class="rcg-source">${r.source}</span>
-                            </div>
                         </div>
-                    `).join('')}
-                </div>
-            `;
-
-            setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                        <div class="rcg-right"><span class="rcg-breach">${r.breach}</span><span class="rcg-source">${r.source}</span></div>
+                    </div>`).join('')}</div>`;
         }
 
         checkAuth();
