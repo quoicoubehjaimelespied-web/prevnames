@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche - Prevname</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="search.css">
+</head>
+<body>
+    <div class="search-page">
+        <nav class="dash-nav">
+            <div class="dash-nav-left">
+                <a href="/dashboard.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 32 32" width="28" height="28">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#7c3aed"/>
+                                    <stop offset="100%" stop-color="#3b82f6"/>
+                                </linearGradient>
+                            </defs>
+                            <circle cx="16" cy="16" r="14" fill="none" stroke="url(#logoGrad)" stroke-width="2"/>
+                            <path d="M16 6 L16 26 M6 16 L26 16 M10 10 L22 22 M22 10 L10 22" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                            <circle cx="16" cy="16" r="4" fill="url(#logoGrad)"/>
+                        </svg>
+                    </div>
+                    <span>Prevname</span>
+                </a>
+                <div class="search-nav-links">
+                    <a href="/dashboard.html">Dashboard</a>
+                    <a href="/search.html" class="active">Recherche</a>
+                </div>
+            </div>
+            <div class="dash-nav-right">
+                <div class="dash-user">
+                    <div class="avatar" id="searchAvatar">U</div>
+                    <span id="searchUsername">Utilisateur</span>
+                </div>
+                <button class="btn-logout" onclick="logout()">Déconnexion</button>
+            </div>
+        </nav>
+
+        <div class="search-content">
+            <div class="search-header">
+                <h1>Recherche avancée</h1>
+                <p>Recherchez dans plus de 2,1 milliards de records avec +20 critères.</p>
+            </div>
+
+            <div class="search-form-container">
+                <div class="search-tabs">
+                    <button class="search-tab active" data-tab="person">Personne</button>
+                    <button class="search-tab" data-tab="email">Email</button>
+                    <button class="search-tab" data-tab="phone">Téléphone</button>
+                    <button class="search-tab" data-tab="advanced">Avancé</button>
+                </div>
+
+                <!-- Person Tab -->
+                <div class="search-tab-content active" id="tab-person">
+                    <div class="search-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Prénom</label>
+                                <input type="text" class="search-input" id="s-firstname" placeholder="Jean">
+                            </div>
+                            <div class="form-group">
+                                <label>Nom</label>
+                                <input type="text" class="search-input" id="s-lastname" placeholder="Dupont">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Ville</label>
+                                <input type="text" class="search-input" id="s-city" placeholder="Paris">
+                            </div>
+                            <div class="form-group">
+                                <label>Pays</label>
+                                <input type="text" class="search-input" id="s-country" placeholder="France">
+                            </div>
+                        </div>
+                        <button class="btn-search" onclick="doSearch('person')">
+                            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                            Rechercher
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Email Tab -->
+                <div class="search-tab-content" id="tab-email">
+                    <div class="search-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Adresse email</label>
+                                <input type="email" class="search-input" id="s-email" placeholder="exemple@email.com">
+                            </div>
+                        </div>
+                        <button class="btn-search" onclick="doSearch('email')">
+                            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                            Rechercher
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Phone Tab -->
+                <div class="search-tab-content" id="tab-phone">
+                    <div class="search-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Numéro de téléphone</label>
+                                <input type="text" class="search-input" id="s-phone" placeholder="+33612345678">
+                            </div>
+                        </div>
+                        <button class="btn-search" onclick="doSearch('phone')">
+                            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                            Rechercher
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Advanced Tab -->
+                <div class="search-tab-content" id="tab-advanced">
+                    <div class="search-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nom d'utilisateur</label>
+                                <input type="text" class="search-input" id="s-username" placeholder="pseudo">
+                            </div>
+                            <div class="form-group">
+                                <label>Adresse IP</label>
+                                <input type="text" class="search-input" id="s-ip" placeholder="192.168.1.1">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Discord ID</label>
+                                <input type="text" class="search-input" id="s-discord" placeholder="123456789012345678">
+                            </div>
+                            <div class="form-group">
+                                <label>SSN / NSS</label>
+                                <input type="text" class="search-input" id="s-ssn" placeholder="1 89 12 34 567 890">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>IBAN</label>
+                                <input type="text" class="search-input" id="s-iban" placeholder="FR76XXXXXXXXXXXX">
+                            </div>
+                            <div class="form-group">
+                                <label>Adresse</label>
+                                <input type="text" class="search-input" id="s-address" placeholder="123 rue Example">
+                            </div>
+                        </div>
+                        <button class="btn-search" onclick="doSearch('advanced')">
+                            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                            Rechercher
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="search-results" id="searchResults">
+                <div class="results-placeholder" id="resultsPlaceholder">
+                    <svg viewBox="0 0 24 24" width="48" height="48"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    <p>Utilisez les critères ci-dessus pour effectuer une recherche</p>
+                </div>
+                <div class="results-list" id="resultsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) { window.location.href = '/login.html'; return; }
+            try {
+                const res = await fetch('/api/me', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (!res.ok) { localStorage.clear(); window.location.href = '/login.html'; return; }
+                const user = await res.json();
+                document.getElementById('searchUsername').textContent = user.username;
+                document.getElementById('searchAvatar').textContent = user.username.charAt(0).toUpperCase();
+            } catch { localStorage.clear(); window.location.href = '/login.html'; }
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = '/';
+        }
+
+        // Tabs
+        document.querySelectorAll('.search-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.search-tab-content').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Mock results
+        const mockResults = {
+            person: [
+                { name: 'Jean Dupont', email: 'jean.dupont@email.com', phone: '+33 6 12 34 56 78', address: '12 rue de Paris, 75001 Paris', source: 'Fuite 2024', breach: 'LinkedIn' },
+                { name: 'Jean Michel', email: 'jean.michel@email.com', phone: '+33 6 98 76 54 32', address: '5 avenue des Champs, 75008 Paris', source: 'Fuite 2023', breach: 'Facebook' },
+                { name: 'Jeanette Dupuis', email: 'jeanette.dupuis@email.com', phone: '+33 7 45 67 89 01', address: '34 rue de la Paix, 69002 Lyon', source: 'Fuite 2024', breach: 'Adobe' },
+            ],
+            email: [
+                { name: 'Sophie Martin', email: 'sophie.martin@email.com', phone: '+33 6 11 22 33 44', address: '8 rue de la République, 69001 Lyon', source: 'Fuite 2024', breach: 'Twitter' },
+                { name: 'Sophie Bernard', email: 'sophie.bernard@email.com', phone: '+33 6 55 66 77 88', address: '22 boulevard Haussmann, 75009 Paris', source: 'Fuite 2023', breach: 'LinkedIn' },
+            ],
+            phone: [
+                { name: 'Pierre Durand', email: 'pierre.durand@email.com', phone: '+33 6 12 34 56 78', address: '15 rue du Bac, 75007 Paris', source: 'Fuite 2024', breach: 'Doctolib' },
+                { name: 'Pierre Lefebvre', email: 'pierre.lefebvre@email.com', phone: '+33 7 23 45 67 89', address: '3 place de la Bourse, 69002 Lyon', source: 'Fuite 2023', breach: 'Amazon' },
+                { name: 'Pierre Moreau', email: 'pierre.moreau@email.com', phone: '+33 6 34 56 78 90', address: '45 rue de Rivoli, 75004 Paris', source: 'Fuite 2024', breach: 'Discord' },
+            ],
+            advanced: [
+                { name: 'Admin System', email: 'admin@system.com', phone: '+33 1 23 45 67 89', address: '1 place du Capitole, 31000 Toulouse', source: 'Fuite 2024', breach: 'GitHub' },
+                { name: 'Root User', email: 'root@localhost.com', phone: '+33 6 99 88 77 66', address: '42 rue du Hack, 75011 Paris', source: 'Fuite 2023', breach: 'MySQL DB' },
+            ]
+        };
+
+        function doSearch(type) {
+            const placeholder = document.getElementById('resultsPlaceholder');
+            const list = document.getElementById('resultsList');
+            placeholder.style.display = 'none';
+            list.innerHTML = '';
+
+            const results = mockResults[type] || [];
+
+            if (results.length === 0) {
+                list.innerHTML = '<div class="no-results">Aucun résultat trouvé</div>';
+                return;
+            }
+
+            list.innerHTML = `
+                <div class="results-header">
+                    <span class="results-count">${results.length} résultat(s) trouvé(s)</span>
+                    <span class="results-time">Temps : ${Math.floor(Math.random() * 50 + 10)}ms</span>
+                </div>
+                ${results.map(r => `
+                    <div class="result-card">
+                        <div class="result-main">
+                            <div class="result-avatar">${r.name.charAt(0)}</div>
+                            <div class="result-info">
+                                <h4>${r.name}</h4>
+                                <div class="result-details">
+                                    <span><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg> ${r.email}</span>
+                                    <span><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> ${r.phone}</span>
+                                    <span><svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> ${r.address}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result-meta">
+                            <span class="result-breach">${r.breach}</span>
+                            <span class="result-source">${r.source}</span>
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+
+            list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        checkAuth();
+    </script>
+</body>
+</html>

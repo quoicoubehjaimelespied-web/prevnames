@@ -1,0 +1,18 @@
+{
+  "name": "prevname",
+  "version": "1.0.0",
+  "description": "Prevname - Moteur de Recherche OSINT",
+  "scripts": {
+    "start": "node api/index.js",
+    "vercel-build": "echo build done"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

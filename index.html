@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevname - Moteur de Recherche OSINT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <nav>
+        <div class="nav-inner">
+            <div class="nav-left">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 32 32" width="32" height="32">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#7c3aed"/>
+                                    <stop offset="100%" stop-color="#3b82f6"/>
+                                </linearGradient>
+                            </defs>
+                            <circle cx="16" cy="16" r="14" fill="none" stroke="url(#logoGrad)" stroke-width="2"/>
+                            <path d="M16 6 L16 26 M6 16 L26 16 M10 10 L22 22 M22 10 L10 22" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                            <circle cx="16" cy="16" r="4" fill="url(#logoGrad)"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Prevname</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#hero" class="active">Accueil</a>
+                    <a href="#how">Comment ça marche</a>
+                    <a href="#features">Fonctionnalités</a>
+                    <a href="#tarifs">Tarifs</a>
+                    <a href="#api">API</a>
+                    <a href="#">Blog</a>
+                    <a href="https://discord.gg/xdss">Contact</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <a href="https://discord.gg/xdss" class="btn-social discord">
+                    <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                    Discord
+                </a>
+                <a href="https://t.me/xdssprev" class="btn-social telegram">
+                    <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Telegram
+                </a>
+                <a href="/login.html" class="btn-connexion" id="navConnexion">Connexion</a>
+                <div class="user-count" id="navUserCount" style="display:none">
+                    <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <span class="count" id="navUserCountNum">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="section hero-section">
+        <div class="hero">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                +2,1 milliards de records indexés
+            </div>
+
+            <h1>Le moteur de recherche<br>pour les <span class="highlight">recherches OS</span></h1>
+
+            <p class="subtitle">Accédez à des milliards d'enregistrements issus de fuites publiques.<br>Recherche avancée par nom, email, téléphone, adresse et plus de 20 critères.</p>
+
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">
+                    <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    Commencer une recherche
+                    <svg viewBox="0 0 24 24" width="18" height="18" class="arrow"><path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                </a>
+                <a href="#tarifs" class="btn-secondary">
+                    Voir les tarifs
+                    <span class="price-badge">Dès 5€</span>
+                </a>
+            </div>
+
+            <div class="features">
+                <div class="feature-item">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                    Données sécurisées
+                </div>
+                <div class="feature-item">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    Résultats instantanés
+                </div>
+                <div class="feature-item">
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                    +20 critères
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scrollez</span>
+        </div>
+    </section>
+
+    <!-- COMMENT ÇA MARCHE SECTION -->
+    <section id="how" class="section how-section">
+        <div class="section-content">
+            <div class="badge badge-yellow">
+                <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                Comment ça marche
+            </div>
+            <h2>Simple et rapide<br>en <span class="highlight">3 étapes</span></h2>
+
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    </div>
+                    <h3>Créez un compte</h3>
+                    <p>Inscrivez-vous gratuitement en quelques secondes. Paiement en crypto uniquement.</p>
+                </div>
+
+                <div class="step-arrow">
+                    <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    </div>
+                    <h3>Effectuez une recherche</h3>
+                    <p>Utilisez nos 20+ critères pour rechercher par nom, email, téléphone, adresse, etc.</p>
+                </div>
+
+                <div class="step-arrow">
+                    <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    </div>
+                    <h3>Exportez les résultats</h3>
+                    <p>Téléchargez vos résultats en PDF ou JSON pour une analyse approfondie.</p>
+                </div>
+            </div>
+
+            <a href="#" class="btn-primary btn-how">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                Commencer maintenant
+                <svg viewBox="0 0 24 24" width="18" height="18" class="arrow"><path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- FONCTIONNALITÉS SECTION -->
+    <section id="features" class="section features-section">
+        <div class="section-content">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Fonctionnalités
+            </div>
+            <h2>Tout ce dont vous avez besoin<br>pour vos <span class="highlight">recherches</span></h2>
+            <p class="subtitle">Une plateforme complète conçue pour les professionnels de la sécurité, les chercheurs OSINT et les entreprises.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="fc-icon search-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    </div>
+                    <h4>Recherche avancée</h4>
+                    <p>Recherche avec plus de 20 critères : nom, email, téléphone, adresse, SSN, IBAN, IP, Discord ID, etc.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="fc-icon instant-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    </div>
+                    <h4>Résultats instantanés</h4>
+                    <p>Réponses très rapides grâce à une infrastructure optimisée.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="fc-icon privacy-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                    </div>
+                    <h4>Confidentialité</h4>
+                    <p>Recherches chiffrées, non partagées, sans conservation des logs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="fc-icon world-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <h4>Couverture mondiale</h4>
+                    <p>Bases de données internationales mises à jour régulièrement.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="fc-icon api-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+                    </div>
+                    <h4>API disponible</h4>
+                    <p>API REST documentée pour intégrer les données dans d'autres outils.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="fc-icon filter-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+                    </div>
+                    <h4>Filtres précis</h4>
+                    <p>Filtres par base de données, pays et type de données.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="fc-icon export-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    </div>
+                    <h4>Export des données</h4>
+                    <p>Export des résultats en PDF ou JSON.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="fc-icon support-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9z"/></svg>
+                    </div>
+                    <h4>Support réactif</h4>
+                    <p>Assistance via Discord et Telegram.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TARIFS SECTION -->
+    <section id="tarifs" class="section tarifs-section">
+        <div class="section-content">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Nos offres
+            </div>
+            <h2>Choisissez votre <span class="highlight">formule</span></h2>
+            <p class="subtitle">Des tarifs adaptés à vos besoins. Tarifs disponibles prochainement.</p>
+
+            <div class="tarifs-placeholder">
+                <div class="placeholder-card">
+                    <div class="placeholder-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Bientôt disponible</h3>
+                    <p>Nos grilles tarifaires sont en cours d'élaboration. Revenez bientôt.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API SECTION -->
+    <section id="api" class="section api-section">
+        <div class="section-content api-layout">
+            <div class="api-code">
+                <div class="code-window">
+                    <div class="code-header">
+                        <div class="window-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="code-filename">api-example.js</span>
+                    </div>
+                    <div class="code-body">
+                        <pre><span class="comment">// Exemple d'utilisation de l'API</span>
+
+<span class="keyword">const</span> <span class="func">searchPerson</span> = <span class="keyword">async</span> () => {
+  <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="func">fetch</span>(<span class="string">'https://api.prevname.com/v1/search'</span>, {
+    <span class="prop">method</span>: <span class="string">'POST'</span>,
+    <span class="prop">headers</span>: {
+      <span class="prop">'Authorization'</span>: <span class="string">'Bearer prevname_votre_cle'</span>,
+      <span class="prop">'Content-Type'</span>: <span class="string">'application/json'</span>
+    },
+    <span class="prop">body</span>: <span class="func">JSON</span>.<span class="func">stringify</span>({
+      <span class="prop">lastName</span>: <span class="string">'Dupont'</span>,
+      <span class="prop">firstName</span>: <span class="string">'Jean'</span>
+    })
+  })
+
+  <span class="keyword">const</span> data = <span class="keyword">await</span> response.<span class="func">json</span>()
+  <span class="func">console</span>.<span class="func">log</span>(data)
+  <span class="comment">// { took: 15, total: 5, results: [...] }</span>
+}</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="api-info">
+                <div class="badge">
+                    <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+                    API REST
+                </div>
+                <h2>Intégrez nos données<br>dans vos <span class="highlight">applications</span></h2>
+                <p class="api-description">Notre API RESTful vous permet d'intégrer facilement nos données dans vos outils, scripts et applications. Abonnements API séparés à partir de 19€/mois.</p>
+                <div class="api-cards">
+                    <div class="api-card">
+                        <div class="api-card-icon lightning">
+                            <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </div>
+                        <h4>Rapide</h4>
+                        <p>Temps de réponse &lt; 50ms</p>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-card-icon lock">
+                            <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                        </div>
+                        <h4>Sécurisée</h4>
+                        <p>Authentification Bearer</p>
+                    </div>
+                    <div class="api-card">
+                        <div class="api-card-icon doc">
+                            <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg>
+                        </div>
+                        <h4>Documentée</h4>
+                        <p>Documentation complète</p>
+                    </div>
+                </div>
+                <a href="#" class="btn-api-doc">
+                    Voir la documentation
+                    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DISCLAIMER SECTION -->
+    <section id="disclaimer" class="section disclaimer-section">
+        <div class="section-content">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Avertissement légal
+            </div>
+            <div class="disclaimer-box">
+                <h3>Responsabilité</h3>
+                <p>Prevname est un outil de recherche d'informations publiquement accessibles. Les données affichées proviennent exclusivement de sources ouvertes et de fuites de données publiques déjà accessibles au grand public.</p>
+                <p>Nous déclinons toute responsabilité quant à l'utilisation faite de ces informations. L'utilisateur est seul responsable de ses actions et de la conformité de ses recherches avec les lois en vigueur dans son pays de résidence.</p>
+                <p class="disclaimer-strong">Prevname ne peut être tenu responsable des poursuites judiciaires, amendes, ou toute autre conséquence légale découlant de l'utilisation de nos services. En utilisant cette plateforme, vous acceptez ces conditions.</p>
+                <div class="disclaimer-sep"></div>
+                <p>Si vous avez des questions concernant ces conditions, veuillez nous contacter.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const token = localStorage.getItem('token');
+        if (token) {
+            document.getElementById('navConnexion').textContent = 'Dashboard';
+            document.getElementById('navConnexion').href = '/dashboard.html';
+            document.getElementById('navUserCount').style.display = 'flex';
+            fetch('/api/me', { headers: { 'Authorization': 'Bearer ' + token } })
+                .then(r => r.json())
+                .then(u => { if (u.username) document.getElementById('navUserCountNum').textContent = u.credits || 0; })
+                .catch(() => {});
+        }
+    </script>
+</body>
+</html>

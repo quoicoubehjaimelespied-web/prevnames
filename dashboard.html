@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Prevname</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="dash-page">
+        <nav class="dash-nav">
+            <div class="dash-nav-left">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 32 32" width="28" height="28">
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#7c3aed"/>
+                                <stop offset="100%" stop-color="#3b82f6"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="16" cy="16" r="14" fill="none" stroke="url(#logoGrad)" stroke-width="2"/>
+                        <path d="M16 6 L16 26 M6 16 L26 16 M10 10 L22 22 M22 10 L10 22" stroke="url(#logoGrad)" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                        <circle cx="16" cy="16" r="4" fill="url(#logoGrad)"/>
+                    </svg>
+                </div>
+                <span>Prevname</span>
+            </div>
+            <div class="dash-nav-right">
+                <div class="dash-user">
+                    <div class="avatar" id="dashAvatar">U</div>
+                    <span id="dashUsername">Utilisateur</span>
+                </div>
+                <button class="btn-logout" onclick="logout()">Déconnexion</button>
+            </div>
+        </nav>
+
+        <div class="dash-content">
+            <div class="dash-header">
+                <h1>Tableau de bord</h1>
+                <p>Bienvenue sur votre espace Prevname.</p>
+            </div>
+
+            <div class="dash-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="statCredits">0</div>
+                    <div class="stat-label">Crédits</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statSearches">0</div>
+                    <div class="stat-label">Recherches</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="statResults">0</div>
+                    <div class="stat-label">Résultats</div>
+                </div>
+            </div>
+
+            <div class="dash-search-box">
+                <h3>Recherche rapide</h3>
+                <div class="dash-search-inputs">
+                    <input type="text" id="dashSearchInput" placeholder="Nom, email, téléphone...">
+                    <button onclick="window.location.href='/search.html'">Rechercher</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) { window.location.href = '/login.html'; return; }
+            try {
+                const res = await fetch('/api/me', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!res.ok) { localStorage.clear(); window.location.href = '/login.html'; return; }
+                const user = await res.json();
+                document.getElementById('dashUsername').textContent = user.username;
+                document.getElementById('dashAvatar').textContent = user.username.charAt(0).toUpperCase();
+                document.getElementById('statCredits').textContent = user.credits || 0;
+            } catch { localStorage.clear(); window.location.href = '/login.html'; }
+        }
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = '/';
+        }
+
+        checkAuth();
+    </script>
+</body>
+</html>
