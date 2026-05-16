@@ -76,7 +76,7 @@
                 if (!res.ok) { errorEl.textContent = data.error; return; }
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
-                window.location.href = '/dashboard.html';
+                window.location.href = '/search.html';
             } catch { errorEl.textContent = 'Erreur serveur'; }
             finally { btn.textContent = 'Créer mon compte'; btn.disabled = false; }
         });
